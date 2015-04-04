@@ -1,0 +1,91 @@
+<div class="actions columns large-2 medium-3">
+    <h3><?= __('Actions') ?></h3>
+    <ul class="top-menu">
+        <li><?= $this->Html->link(__('Edit Aaa'), ['action' => 'edit', $aaa->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Aaa'), ['action' => 'delete', $aaa->id], ['confirm' => __('Are you sure you want to delete # {0}?', $aaa->id)]) ?> </li>
+        <li><?= $this->Html->link(__('List Aaas'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Aaa'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Aaas Bbbs'), ['controller' => 'AaasBbbs', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Aaas Bbb'), ['controller' => 'AaasBbbs', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Bbbs'), ['controller' => 'Bbbs', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Bbb'), ['controller' => 'Bbbs', 'action' => 'add']) ?> </li>
+    </ul>
+</div>
+<div class="aaas view large-10 medium-9 columns">
+    <h2><?= h($aaa->name) ?></h2>
+    <div class="row">
+        <div class="large-5 columns strings">
+            <h6 class="subheader"><?= __('Name') ?></h6>
+            <p><?= h($aaa->name) ?></p>
+        </div>
+        <div class="large-2 columns numbers end">
+            <h6 class="subheader"><?= __('Id') ?></h6>
+            <p><?= $this->Number->format($aaa->id) ?></p>
+        </div>
+    </div>
+</div>
+
+<div class="related row">
+    <div class="column large-12">
+    <h4 class="subheader"><?= __('Related AaasBbbs') ?></h4>
+    <?php if (!empty($aaa->aaas_bbbs)): ?>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th><?= __('Id') ?></th>
+            <th><?= __('Aaa Id') ?></th>
+            <th><?= __('Bbb Id') ?></th>
+            <th><?= __('Attrib1') ?></th>
+            <th class="actions"><?= __('Actions') ?></th>
+        </tr>
+        <?php foreach ($aaa->aaas_bbbs as $aaasBbbs): ?>
+        <tr>
+            <td><?= h($aaasBbbs->id) ?></td>
+            <td><?= h($aaasBbbs->aaa_id) ?></td>
+            <td><?= h($aaasBbbs->bbb_id) ?></td>
+            <td><?= h($aaasBbbs->attrib1) ?></td>
+
+            <td class="actions">
+                <?= $this->Html->link(__('View'), ['controller' => 'AaasBbbs', 'action' => 'view', $aaasBbbs->id]) ?>
+
+                <?= $this->Html->link(__('Edit'), ['controller' => 'AaasBbbs', 'action' => 'edit', $aaasBbbs->id]) ?>
+
+                <?= $this->Form->postLink(__('Delete'), ['controller' => 'AaasBbbs', 'action' => 'delete', $aaasBbbs->id], ['confirm' => __('Are you sure you want to delete # {0}?', $aaasBbbs->id)]) ?>
+
+            </td>
+        </tr>
+
+        <?php endforeach; ?>
+    </table>
+    <?php endif; ?>
+    </div>
+</div>
+<div class="related row">
+    <div class="column large-12">
+    <h4 class="subheader"><?= __('Related Bbbs') ?></h4>
+    <?php if (!empty($aaa->bbbs)): ?>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th><?= __('Id') ?></th>
+            <th><?= __('Name') ?></th>
+            <th class="actions"><?= __('Actions') ?></th>
+        </tr>
+        <?php foreach ($aaa->bbbs as $bbbs): ?>
+        <tr>
+            <td><?= h($bbbs->id) ?></td>
+            <td><?= h($bbbs->name) ?></td>
+
+            <td class="actions">
+                <?= $this->Html->link(__('View'), ['controller' => 'Bbbs', 'action' => 'view', $bbbs->id]) ?>
+
+                <?= $this->Html->link(__('Edit'), ['controller' => 'Bbbs', 'action' => 'edit', $bbbs->id]) ?>
+
+                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Bbbs', 'action' => 'delete', $bbbs->id], ['confirm' => __('Are you sure you want to delete # {0}?', $bbbs->id)]) ?>
+
+            </td>
+        </tr>
+
+        <?php endforeach; ?>
+    </table>
+    <?php endif; ?>
+    </div>
+</div>

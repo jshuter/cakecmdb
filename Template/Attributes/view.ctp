@@ -17,17 +17,12 @@
         <div class="large-5 columns strings">
             <h6 class="subheader"><?= __('Name') ?></h6>
             <p><?= h($attribute->name) ?></p>
+            <h6 class="subheader"><?= __('Value') ?></h6>
+            <p><?= h($attribute->value) ?></p>
         </div>
         <div class="large-2 columns numbers end">
             <h6 class="subheader"><?= __('Id') ?></h6>
             <p><?= $this->Number->format($attribute->id) ?></p>
-        </div>
-    </div>
-    <div class="row texts">
-        <div class="columns large-9">
-            <h6 class="subheader"><?= __('Value') ?></h6>
-            <?= $this->Text->autoParagraph(h($attribute->value)); ?>
-
         </div>
     </div>
 </div>

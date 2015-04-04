@@ -19,7 +19,7 @@ class ThingsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Types']
+            'contain' => ['Types', 'Versions', 'Systems']
         ];
         $this->set('things', $this->paginate($this->Things));
         $this->set('_serialize', ['things']);
@@ -34,7 +34,9 @@ class ThingsController extends AppController
      */
     public function view($id = null)
     {
-        $thing = $this->Things->get($id, [ 'contain' => ['Types', 'Thing2s'] ]);
+        $thing = $this->Things->get($id, [
+            'contain' => ['Types', 'Versions', 'Systems', 'Attributes', 'ThingsAttributes']
+        ]);
         $this->set('thing', $thing);
         $this->set('_serialize', ['thing']);
     }
@@ -57,8 +59,10 @@ class ThingsController extends AppController
             }
         }
         $types = $this->Things->Types->find('list', ['limit' => 200]);
-        $things = $this->Things->Things->find('list', ['limit' => 200]);
-        $this->set(compact('thing', 'types', 'things'));
+        $versions = $this->Things->Versions->find('list', ['limit' => 200]);
+        $systems = $this->Things->Systems->find('list', ['limit' => 200]);
+        $attributes = $this->Things->Attributes->find('list', ['limit' => 200]);
+        $this->set(compact('thing', 'types', 'versions', 'systems', 'attributes'));
         $this->set('_serialize', ['thing']);
     }
 
@@ -72,7 +76,7 @@ class ThingsController extends AppController
     public function edit($id = null)
     {
         $thing = $this->Things->get($id, [
-            'contain' => ['Things']
+            'contain' => ['Attributes']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $thing = $this->Things->patchEntity($thing, $this->request->data);
@@ -84,8 +88,10 @@ class ThingsController extends AppController
             }
         }
         $types = $this->Things->Types->find('list', ['limit' => 200]);
-        $things = $this->Things->Things->find('list', ['limit' => 200]);
-        $this->set(compact('thing', 'types', 'things'));
+        $versions = $this->Things->Versions->find('list', ['limit' => 200]);
+        $systems = $this->Things->Systems->find('list', ['limit' => 200]);
+        $attributes = $this->Things->Attributes->find('list', ['limit' => 200]);
+        $this->set(compact('thing', 'types', 'versions', 'systems', 'attributes'));
         $this->set('_serialize', ['thing']);
     }
 

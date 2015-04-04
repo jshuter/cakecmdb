@@ -1,16 +1,16 @@
 <?php
 namespace App\Model\Table;
 
-use App\Model\Entity\Thing;
+use App\Model\Entity\ThingsSystem;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Things Model
+ * ThingsSystems Model
  */
-class ThingsTable extends Table
+class ThingsSystemsTable extends Table
 {
 
     /**
@@ -21,27 +21,14 @@ class ThingsTable extends Table
      */
     public function initialize(array $config)
     {
-        $this->table('things');
-        $this->displayField('name');
+        $this->table('things_systems');
+        $this->displayField('id');
         $this->primaryKey('id');
-        $this->belongsTo('Types', [
-            'foreignKey' => 'type_id'
-        ]);
-        $this->belongsTo('Versions', [
-            'foreignKey' => 'version_id'
+        $this->belongsTo('Things', [
+            'foreignKey' => 'thing_id'
         ]);
         $this->belongsTo('Systems', [
             'foreignKey' => 'system_id'
-        ]);
-        $this->belongsToMany('Attributes', [
-            'foreignKey' => 'thing_id',
-            'targetForeignKey' => 'attribute_id',
-            'joinTable' => 'things_attributes'
-        ]);
-        $this->belongsToMany('Systems', [
-            'foreignKey' => 'thing_id',
-            'targetForeignKey' => 'system_id',
-            'joinTable' => 'things_systems'
         ]);
     }
 
@@ -56,15 +43,12 @@ class ThingsTable extends Table
         $validator
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create')
-            ->allowEmpty('name')
-            ->add('type_id', 'valid', ['rule' => 'numeric'])
-            ->requirePresence('type_id', 'create')
-            ->notEmpty('type_id')
-            ->allowEmpty('description')
-            ->add('version_id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('version_id')
+            ->add('thing_id', 'valid', ['rule' => 'numeric'])
+            ->requirePresence('thing_id', 'create')
+            ->notEmpty('thing_id')
             ->add('system_id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('system_id');
+            ->requirePresence('system_id', 'create')
+            ->notEmpty('system_id');
 
         return $validator;
     }
@@ -78,8 +62,7 @@ class ThingsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['type_id'], 'Types'));
-        $rules->add($rules->existsIn(['version_id'], 'Versions'));
+        $rules->add($rules->existsIn(['thing_id'], 'Things'));
         $rules->add($rules->existsIn(['system_id'], 'Systems'));
         return $rules;
     }

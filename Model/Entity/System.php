@@ -4,9 +4,9 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Thing Entity.
+ * System Entity.
  */
-class Thing extends Entity
+class System extends Entity
 {
 
     /**
@@ -16,13 +16,7 @@ class Thing extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'type_id' => true,
         'description' => true,
-        'version_id' => true,
-        'system_id' => true,
-        'type' => true,
-        'version' => true,
-        'system' => true,
-        'attributes' => true,
+        'things' => true,
     ];
 }
