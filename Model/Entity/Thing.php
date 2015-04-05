@@ -16,13 +16,12 @@ class Thing extends Entity
      */
     protected $_accessible = [
         'name' => true,
-        'type_id' => true,
         'description' => true,
+        'type_id' => true,
         'version_id' => true,
-        'system_id' => true,
         'type' => true,
         'version' => true,
-        'system' => true,
         'attributes' => true,
+        'systems' => true,
     ];
 }

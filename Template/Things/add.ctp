@@ -6,12 +6,12 @@
         <li><?= $this->Html->link(__('New Type'), ['controller' => 'Types', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Versions'), ['controller' => 'Versions', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Version'), ['controller' => 'Versions', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Systems'), ['controller' => 'Systems', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New System'), ['controller' => 'Systems', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Things Attributes'), ['controller' => 'ThingsAttributes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Things Attribute'), ['controller' => 'ThingsAttributes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Attributes'), ['controller' => 'Attributes', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Attribute'), ['controller' => 'Attributes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Systems'), ['controller' => 'Systems', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New System'), ['controller' => 'Systems', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Thing2s'), ['controller' => 'Thing2s', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Thing2'), ['controller' => 'Thing2s', 'action' => 'add']) ?> </li>
     </ul>
 </div>
 <div class="things form large-10 medium-9 columns">
@@ -20,11 +20,11 @@
         <legend><?= __('Add Thing') ?></legend>
         <?php
             echo $this->Form->input('name');
-            echo $this->Form->input('type_id', ['options' => $types]);
             echo $this->Form->input('description');
+            echo $this->Form->input('type_id', ['options' => $types]);
             echo $this->Form->input('version_id', ['options' => $versions, 'empty' => true]);
-            echo $this->Form->input('system_id', ['options' => $systems, 'empty' => true]);
-            echo $this->Form->input('attributes._ids', ['options' => $attributes]);
+            echo $this->Form->input('systems._ids', ['options' => $systems]);
+            echo $this->Form->input('thing2s._ids', ['options' => $thing2s]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

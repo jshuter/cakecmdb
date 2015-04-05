@@ -32,7 +32,7 @@ class SystemsController extends AppController
     public function view($id = null)
     {
         $system = $this->Systems->get($id, [
-            'contain' => ['Things', 'ThingsSystems']
+            'contain' => ['Things', 'SystemsThings']
         ]);
         $this->set('system', $system);
         $this->set('_serialize', ['system']);
@@ -55,7 +55,8 @@ class SystemsController extends AppController
                 $this->Flash->error('The system could not be saved. Please, try again.');
             }
         }
-        $this->set(compact('system'));
+        $things = $this->Systems->Things->find('list', ['limit' => 200]);
+        $this->set(compact('system', 'things'));
         $this->set('_serialize', ['system']);
     }
 
@@ -69,7 +70,7 @@ class SystemsController extends AppController
     public function edit($id = null)
     {
         $system = $this->Systems->get($id, [
-            'contain' => []
+            'contain' => ['Things']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $system = $this->Systems->patchEntity($system, $this->request->data);
@@ -80,7 +81,8 @@ class SystemsController extends AppController
                 $this->Flash->error('The system could not be saved. Please, try again.');
             }
         }
-        $this->set(compact('system'));
+        $things = $this->Systems->Things->find('list', ['limit' => 200]);
+        $this->set(compact('system', 'things'));
         $this->set('_serialize', ['system']);
     }
 

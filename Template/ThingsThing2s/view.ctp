@@ -15,29 +15,16 @@
 </div>
 <div class="thingsThing2s view large-10 medium-9 columns">
     <h2><?= h($thingsThing2->id) ?></h2>
-    
-        <div class="large-4 columns strings">
-
-            <h6 class="subheader"> <?= __('Thing') ?></h6>
-            <p><?= $thingsThing2->has('thing') ? 
-				$this->Html->link($thingsThing2->thing->name, ['controller' => 'Things', 'action' => 'view', $thingsThing2->thing->id]) : '' ?>
-				<?= $thingsThing2->thing->description ?>
-			</p>
-
-        </div>
-        <div class="large-4 columns strings">
+    <div class="row">
+        <div class="large-5 columns strings">
+            <h6 class="subheader"><?= __('Thing') ?></h6>
+            <p><?= $thingsThing2->has('thing') ? $this->Html->link($thingsThing2->thing->name, ['controller' => 'Things', 'action' => 'view', $thingsThing2->thing->id]) : '' ?></p>
+            <h6 class="subheader"><?= __('Thing2') ?></h6>
+            <p><?= $thingsThing2->has('thing2') ? $this->Html->link($thingsThing2->thing2->name, ['controller' => 'Thing2s', 'action' => 'view', $thingsThing2->thing2->id]) : '' ?></p>
             <h6 class="subheader"><?= __('Reltype') ?></h6>
             <p><?= $thingsThing2->has('reltype') ? $this->Html->link($thingsThing2->reltype->name, ['controller' => 'Reltypes', 'action' => 'view', $thingsThing2->reltype->id]) : '' ?></p>
-
         </div>
-        <div class="large-4 columns strings">
-            <h6 class="subheader"><?= __('Thing2') ?></h6>
-            <p><?= $thingsThing2->has('thing2') ? $this->Html->link($thingsThing2->thing2->name, ['controller' => 'Thing2s', 'action' => 'view', $thingsThing2->thing2->id]) : '' ?>
-<?= $thingsThing2->thing2->description ?>
-</p>
-        </div>
-
-        <div class="large-1 columns numbers end">
+        <div class="large-2 columns numbers end">
             <h6 class="subheader"><?= __('Id') ?></h6>
             <p><?= $this->Number->format($thingsThing2->id) ?></p>
         </div>

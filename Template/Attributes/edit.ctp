@@ -8,8 +8,6 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Attributes'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Things Attributes'), ['controller' => 'ThingsAttributes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Things Attribute'), ['controller' => 'ThingsAttributes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Things'), ['controller' => 'Things', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Thing'), ['controller' => 'Things', 'action' => 'add']) ?> </li>
     </ul>
@@ -21,7 +19,7 @@
         <?php
             echo $this->Form->input('name');
             echo $this->Form->input('value');
-            echo $this->Form->input('things._ids', ['options' => $things]);
+            echo $this->Form->input('thing_id', ['options' => $things]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

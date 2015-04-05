@@ -24,9 +24,6 @@ class SystemsTable extends Table
         $this->table('systems');
         $this->displayField('name');
         $this->primaryKey('id');
-        $this->hasMany('Things', [
-            'foreignKey' => 'system_id'
-        ]);
         $this->belongsToMany('Things', [
             'foreignKey' => 'system_id',
             'targetForeignKey' => 'thing_id',

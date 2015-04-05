@@ -2,6 +2,8 @@
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('New System'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Systems Things'), ['controller' => 'SystemsThings', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Systems Thing'), ['controller' => 'SystemsThings', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Things'), ['controller' => 'Things', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Thing'), ['controller' => 'Things', 'action' => 'add']) ?> </li>
     </ul>

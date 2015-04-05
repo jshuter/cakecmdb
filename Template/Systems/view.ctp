@@ -5,6 +5,8 @@
         <li><?= $this->Form->postLink(__('Delete System'), ['action' => 'delete', $system->id], ['confirm' => __('Are you sure you want to delete # {0}?', $system->id)]) ?> </li>
         <li><?= $this->Html->link(__('List Systems'), ['action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New System'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Systems Things'), ['controller' => 'SystemsThings', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Systems Thing'), ['controller' => 'SystemsThings', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Things'), ['controller' => 'Things', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Thing'), ['controller' => 'Things', 'action' => 'add']) ?> </li>
     </ul>
@@ -26,26 +28,56 @@
 </div>
 <div class="related row">
     <div class="column large-12">
+    <h4 class="subheader"><?= __('Related SystemsThings') ?></h4>
+    <?php if (!empty($system->systems_things)): ?>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th><?= __('Id') ?></th>
+            <th><?= __('Thing Id') ?></th>
+            <th><?= __('System Id') ?></th>
+            <th class="actions"><?= __('Actions') ?></th>
+        </tr>
+        <?php foreach ($system->systems_things as $systemsThings): ?>
+        <tr>
+            <td><?= h($systemsThings->id) ?></td>
+            <td><?= h($systemsThings->thing_id) ?></td>
+            <td><?= h($systemsThings->system_id) ?></td>
+
+            <td class="actions">
+                <?= $this->Html->link(__('View'), ['controller' => 'SystemsThings', 'action' => 'view', $systemsThings->id]) ?>
+
+                <?= $this->Html->link(__('Edit'), ['controller' => 'SystemsThings', 'action' => 'edit', $systemsThings->id]) ?>
+
+                <?= $this->Form->postLink(__('Delete'), ['controller' => 'SystemsThings', 'action' => 'delete', $systemsThings->id], ['confirm' => __('Are you sure you want to delete # {0}?', $systemsThings->id)]) ?>
+
+            </td>
+        </tr>
+
+        <?php endforeach; ?>
+    </table>
+    <?php endif; ?>
+    </div>
+</div>
+<div class="related row">
+    <div class="column large-12">
     <h4 class="subheader"><?= __('Related Things') ?></h4>
     <?php if (!empty($system->things)): ?>
     <table cellpadding="0" cellspacing="0">
         <tr>
             <th><?= __('Id') ?></th>
             <th><?= __('Name') ?></th>
-            <th><?= __('Type Id') ?></th>
             <th><?= __('Description') ?></th>
+            <th><?= __('Type Id') ?></th>
             <th><?= __('Version Id') ?></th>
-            <th><?= __('System Id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($system->things as $things): ?>
         <tr>
             <td><?= h($things->id) ?></td>
             <td><?= h($things->name) ?></td>
-            <td><?= h($things->type_id) ?></td>
             <td><?= h($things->description) ?></td>
+            <td><?= h($things->type_id) ?></td>
             <td><?= h($things->version_id) ?></td>
-            <td><?= h($things->system_id) ?></td>
 
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['controller' => 'Things', 'action' => 'view', $things->id]) ?>

@@ -18,6 +18,9 @@ class AttributesController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Things']
+        ];
         $this->set('attributes', $this->paginate($this->Attributes));
         $this->set('_serialize', ['attributes']);
     }
@@ -32,7 +35,7 @@ class AttributesController extends AppController
     public function view($id = null)
     {
         $attribute = $this->Attributes->get($id, [
-            'contain' => ['Things', 'ThingsAttributes']
+            'contain' => ['Things']
         ]);
         $this->set('attribute', $attribute);
         $this->set('_serialize', ['attribute']);
@@ -70,7 +73,7 @@ class AttributesController extends AppController
     public function edit($id = null)
     {
         $attribute = $this->Attributes->get($id, [
-            'contain' => ['Things']
+            'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $attribute = $this->Attributes->patchEntity($attribute, $this->request->data);

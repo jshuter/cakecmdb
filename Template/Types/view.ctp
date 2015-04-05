@@ -34,6 +34,8 @@
             <th><?= __('Name') ?></th>
             <th><?= __('Type Id') ?></th>
             <th><?= __('Description') ?></th>
+            <th><?= __('Version Id') ?></th>
+            <th><?= __('System Id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
         <?php foreach ($type->things as $things): ?>
@@ -42,6 +44,8 @@
             <td><?= h($things->name) ?></td>
             <td><?= h($things->type_id) ?></td>
             <td><?= h($things->description) ?></td>
+            <td><?= h($things->version_id) ?></td>
+            <td><?= h($things->system_id) ?></td>
 
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['controller' => 'Things', 'action' => 'view', $things->id]) ?>

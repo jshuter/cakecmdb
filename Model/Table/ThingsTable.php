@@ -30,18 +30,14 @@ class ThingsTable extends Table
         $this->belongsTo('Versions', [
             'foreignKey' => 'version_id'
         ]);
-        $this->belongsTo('Systems', [
-            'foreignKey' => 'system_id'
-        ]);
-        $this->belongsToMany('Attributes', [
-            'foreignKey' => 'thing_id',
-            'targetForeignKey' => 'attribute_id',
-            'joinTable' => 'things_attributes'
+        $this->hasMany('Attributes', [
+            'foreignKey' => 'thing_id'
         ]);
         $this->belongsToMany('Systems', [
-            'foreignKey' => 'thing_id',
-            'targetForeignKey' => 'system_id',
-            'joinTable' => 'things_systems'
+            'through' => 'systems_things'
+        ]);
+        $this->belongsToMany('Thing2s', [
+            'through' => 'things_thing2s'
         ]);
     }
 
@@ -57,14 +53,12 @@ class ThingsTable extends Table
             ->add('id', 'valid', ['rule' => 'numeric'])
             ->allowEmpty('id', 'create')
             ->allowEmpty('name')
+            ->allowEmpty('description')
             ->add('type_id', 'valid', ['rule' => 'numeric'])
             ->requirePresence('type_id', 'create')
             ->notEmpty('type_id')
-            ->allowEmpty('description')
             ->add('version_id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('version_id')
-            ->add('system_id', 'valid', ['rule' => 'numeric'])
-            ->allowEmpty('system_id');
+            ->allowEmpty('version_id');
 
         return $validator;
     }
@@ -80,7 +74,6 @@ class ThingsTable extends Table
     {
         $rules->add($rules->existsIn(['type_id'], 'Types'));
         $rules->add($rules->existsIn(['version_id'], 'Versions'));
-        $rules->add($rules->existsIn(['system_id'], 'Systems'));
         return $rules;
     }
 }

@@ -1,21 +1,23 @@
-<div class="menu_simple">
-<ul>
- <li><?= $this->Html->link(__('Edit-Thing'), ['action' => 'edit', $thing->id]) ?> </li>
- <li><?= $this->Form->postLink(__('Delete-Thing'), ['action' => 'delete', $thing->id], ['confirm' => __('Are you sure you want to delete # {0}?', $thing->id)]) ?> </li>
- <li><?= $this->Html->link(__('List-Things'), ['action' => 'index']) ?> </li>
- <li><?= $this->Html->link(__('New-Thing'), ['action' => 'add']) ?> </li>
- <li><?= $this->Html->link(__('List-Types'), ['controller' => 'Types', 'action' => 'index']) ?> </li>
- <li><?= $this->Html->link(__('New-Type'), ['controller' => 'Types', 'action' => 'add']) ?> </li>
- <li><?= $this->Html->link(__('List-Versions'), ['controller' => 'Versions', 'action' => 'index']) ?> </li>
- <li><?= $this->Html->link(__('New-Version'), ['controller' => 'Versions', 'action' => 'add']) ?> </li>
- <li><?= $this->Html->link(__('List-Attributes'), ['controller' => 'Attributes', 'action' => 'index']) ?> </li>
- <li><?= $this->Html->link(__('New-Attribute'), ['controller' => 'Attributes', 'action' => 'add']) ?> </li>
- <li><?= $this->Html->link(__('List-Systems'), ['controller' => 'Systems', 'action' => 'index']) ?> </li>
- <li><?= $this->Html->link(__('New-System'), ['controller' => 'Systems', 'action' => 'add']) ?> </li>
- <li><?= $this->Html->link(__('List-Thing2s'), ['controller' => 'Thing2s', 'action' => 'index']) ?> </li>
- <li><?= $this->Html->link(__('New-Thing2'), ['controller' => 'Thing2s', 'action' => 'add']) ?> </li>
-</ul>
+<div class="actions columns large-2 medium-3">
+    <h3><?= __('Actions') ?></h3>
+    <ul class="side-nav">
+        <li><?= $this->Html->link(__('Edit Thing'), ['action' => 'edit', $thing->id]) ?> </li>
+        <li><?= $this->Form->postLink(__('Delete Thing'), ['action' => 'delete', $thing->id], ['confirm' => __('Are you sure you want to delete # {0}?', $thing->id)]) ?> </li>
+        <li><?= $this->Html->link(__('List Things'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Thing'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Types'), ['controller' => 'Types', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Type'), ['controller' => 'Types', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Versions'), ['controller' => 'Versions', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Version'), ['controller' => 'Versions', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Attributes'), ['controller' => 'Attributes', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Attribute'), ['controller' => 'Attributes', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Systems'), ['controller' => 'Systems', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New System'), ['controller' => 'Systems', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Thing2s'), ['controller' => 'Thing2s', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Thing2'), ['controller' => 'Thing2s', 'action' => 'add']) ?> </li>
+    </ul>
 </div>
+<?php print_r($thing) ?>
 
 <div class="things view large-10 medium-9 columns">
     <h2><?= h($thing->name) ?></h2>

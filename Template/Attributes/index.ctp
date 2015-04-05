@@ -2,8 +2,6 @@
     <h3><?= __('Actions') ?></h3>
     <ul class="side-nav">
         <li><?= $this->Html->link(__('New Attribute'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Things Attributes'), ['controller' => 'ThingsAttributes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Things Attribute'), ['controller' => 'ThingsAttributes', 'action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Things'), ['controller' => 'Things', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Thing'), ['controller' => 'Things', 'action' => 'add']) ?> </li>
     </ul>
@@ -15,6 +13,7 @@
             <th><?= $this->Paginator->sort('id') ?></th>
             <th><?= $this->Paginator->sort('name') ?></th>
             <th><?= $this->Paginator->sort('value') ?></th>
+            <th><?= $this->Paginator->sort('thing_id') ?></th>
             <th class="actions"><?= __('Actions') ?></th>
         </tr>
     </thead>
@@ -24,6 +23,9 @@
             <td><?= $this->Number->format($attribute->id) ?></td>
             <td><?= h($attribute->name) ?></td>
             <td><?= h($attribute->value) ?></td>
+            <td>
+                <?= $attribute->has('thing') ? $this->Html->link($attribute->thing->name, ['controller' => 'Things', 'action' => 'view', $attribute->thing->id]) : '' ?>
+            </td>
             <td class="actions">
                 <?= $this->Html->link(__('View'), ['action' => 'view', $attribute->id]) ?>
                 <?= $this->Html->link(__('Edit'), ['action' => 'edit', $attribute->id]) ?>

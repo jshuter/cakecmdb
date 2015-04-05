@@ -25,6 +25,17 @@ class ThingsThing2sController extends AppController
         $this->set('_serialize', ['thingsThing2s']);
     }
 
+    public function tree()
+    {
+		$results = array(); 
+		$results[] = $this->ThingsThing2s->get(1,['contain'=> ['Things','Thing2s']]);
+		$results[] = $this->ThingsThing2s->get(2,['contain'=> ['Things','Thing2s']]);
+		$results[] = $this->ThingsThing2s->get(3,['contain'=> ['Things','Thing2s']]);
+		$results[] = $this->ThingsThing2s->get(4,['contain'=> ['Things','Thing2s']]);
+
+        $this->set('thingsThing2s', $results);
+        $this->set('_serialize', ['thingsThing2s']);
+	}
     /**
      * View method
      *
